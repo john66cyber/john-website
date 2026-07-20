@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Amos Mubiru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     EASY EDIT ZONE — change text/numbers here without touching CSS
+     ============================================================ */
+
+  :root{
+    --bg: #0B0E13;
+    --surface: #12161D;
+    --surface-2: #181D26;
+    --gold: #C9A24B;
+    --gold-soft: #E4CE93;
+    --up: #35C48C;
+    --down: #E5646A;
+    --text: #EDEAE3;
+    --muted: #8A93A3;
+    --hair: rgba(237,234,227,0.10);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; margin:0; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.03em; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  :focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* ---------- layout helpers ---------- */
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+  section{ padding: clamp(56px, 10vw, 110px) 0; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- nav ---------- */
+  header.site{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(11,14,19,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px clamp(20px,5vw,48px);
+  }
+  .nav .name{ font-size: 1.05rem; font-weight:600; }
+  .nav .name .amos{ color: var(--gold); }
+  .nav ul{
+    list-style:none; display:flex; gap: clamp(14px,3vw,32px);
+    margin:0; padding:0; font-size:0.9rem;
+  }
+  .nav ul a{ text-decoration:none; color: var(--muted); transition: color .2s; }
+  .nav ul a:hover{ color: var(--text); }
+  .nav-toggle{ display:none; background:none; border:none; color:var(--text); font-size:1.4rem; cursor:pointer; }
+
+  @media (max-width: 640px){
+    .nav ul{ display:none; }
+    .nav-toggle{ display:block; }
+    .nav ul.open{
+      display:flex; flex-direction:column;
+      position:absolute; top:100%; left:0; right:0;
+      background: var(--surface); padding:20px clamp(20px,5vw,48px);
+      border-bottom:1px solid var(--hair);
+    }
+  }
+
+  /* ---------- ticker (signature element) ---------- */
+  .ticker{
+    border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair);
+    overflow:hidden;
+    background: var(--surface);
+    white-space:nowrap;
+  }
+  .ticker-track{
+    display:inline-flex;
+    gap:40px;
+    padding: 10px 0;
+    animation: scrollTicker 38s linear infinite;
+    font-size:0.8rem;
+  }
+  .ticker-track span.pair{ color: var(--muted); }
+  .ticker-track span.up{ color: var(--up); }
+  .ticker-track span.down{ color: var(--down); }
+  @keyframes scrollTicker{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation: none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding: clamp(64px,12vw,130px) 0 clamp(50px,8vw,80px);
+    text-align:center;
+    position:relative;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    line-height:1.05;
+    font-weight:700;
+  }
+  .hero h1 .accent{ color: var(--gold); font-style:italic; font-weight:600; }
+  .hero p.tagline{
+    max-width: 560px; margin: 22px auto 0;
+    color: var(--muted); font-size:1.05rem; line-height:1.6;
+  }
+  .hero-cta{
+    margin-top:36px;
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-weight:600; font-size:0.95rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{ background: var(--up); color:#05140D; }
+  .btn-ghost{ background:transparent; border-color: var(--hair); color: var(--text); }
+  .btn svg{ width:18px; height:18px; }
+
+  /* ---------- section headers ---------- */
+  .section-head{ max-width:640px; margin-bottom: 44px; }
+  .section-head h2{ font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight:600; }
+  .section-head p{ color: var(--muted); margin-top:12px; line-height:1.6; }
+
+  /* ---------- interests / postcards ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap:22px;
+  }
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-radius: 14px;
+    padding: 26px;
+    position:relative;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform: translateY(-4px); border-color: rgba(201,162,75,0.4); }
+  .card .stub-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem; color:var(--gold);
+    text-transform:uppercase; letter-spacing:0.12em;
+  }
+  .card h3{ font-size:1.25rem; margin: 10px 0 8px; font-weight:600; }
+  .card p{ color: var(--muted); font-size:0.92rem; line-height:1.55; margin:0; }
+  .card .stub-cut{
+    position:absolute; right:-1px; top:18px; bottom:18px;
+    width:1px;
+    background-image: repeating-linear-gradient(to bottom, var(--hair) 0 6px, transparent 6px 12px);
+    display:none;
+  }
+
+  /* ---------- forex section ---------- */
+  .forex{
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair);
+  }
+  .forex-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items:start;
+  }
+  @media (max-width: 800px){
+    .forex-grid{ grid-template-columns: 1fr; }
+  }
+  .forex-bio p{ color: var(--muted); line-height:1.7; margin-bottom:16px; }
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:16px;
+  }
+  .stat{
+    background: var(--surface-2);
+    border:1px solid var(--hair);
+    border-radius:12px;
+    padding: 20px;
+  }
+  .stat .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--gold-soft);
+    font-weight:600;
+  }
+  .stat .label{
+    color: var(--muted); font-size:0.8rem;
+    text-transform:uppercase; letter-spacing:0.08em; margin-top:6px;
+  }
+  .edit-flag{
+    display:inline-block; margin-top:14px;
+    font-size:0.72rem; color: var(--down);
+    font-family:'IBM Plex Mono',monospace;
+    border:1px dashed rgba(229,100,106,0.5);
+    padding: 6px 10px; border-radius: 8px;
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap:16px;
+  }
+  .gallery-item{
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow:hidden;
+    background: var(--surface-2);
+    border:1px solid var(--hair);
+    position:relative;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform .4s ease;
+  }
+  .gallery-item:hover img{ transform: scale(1.05); }
+  .gallery-item .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding: 10px 12px;
+    font-size:0.78rem; color: var(--text);
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.75));
+  }
+  .gallery-item.placeholder{
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:8px;
+    color: var(--muted); font-size:0.8rem; text-align:center; padding:16px;
+  }
+  .gallery-item.placeholder .plus{
+    font-size:1.8rem; color: var(--gold); font-family:'IBM Plex Mono',monospace;
+  }
+  .gallery-note{
+    margin-top:18px; color: var(--muted); font-size:0.85rem;
+    border-left: 2px solid var(--gold); padding-left:14px; line-height:1.6;
+  }
+  .gallery-note code{
+    background: var(--surface-2); padding:2px 6px; border-radius:4px;
+    font-size:0.8rem;
+  }
+
+  /* ---------- contact / cta ---------- */
+  .contact{
+    text-align:center;
+  }
+  .contact h2{ font-size: clamp(1.8rem,5vw,2.8rem); }
+  .contact p{ color: var(--muted); max-width:480px; margin: 16px auto 30px; line-height:1.6; }
+
+  .whatsapp-float{
+    position:fixed; right:20px; bottom:20px; z-index:60;
+    background: var(--up);
+    color:#05140D;
+    width:58px; height:58px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px rgba(53,196,140,0.35);
+    text-decoration:none;
+    transition: transform .2s ease;
+  }
+  .whatsapp-float:hover{ transform: scale(1.08); }
+  .whatsapp-float svg{ width:28px; height:28px; }
+
+  footer{
+    border-top:1px solid var(--hair);
+    padding: 26px clamp(20px,5vw,48px);
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:10px;
+    font-size:0.82rem; color: var(--muted);
+  }
+
+  /* ---------- about my life ---------- */
+  .life-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 800px){ .life-grid{ grid-template-columns: 1fr; } }
+  .life-grid p{ color: var(--muted); line-height:1.75; margin-bottom:16px; }
+  .life-facts{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .life-fact{
+    display:flex; justify-content:space-between; gap:12px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border:1px solid var(--hair);
+    border-radius:10px;
+    font-size:0.9rem;
+  }
+  .life-fact .k{ color: var(--muted); }
+  .life-fact .v{ color: var(--text); font-weight:600; text-align:right; }
+
+  /* ---------- social row ---------- */
+  .social-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    margin-top: 34px;
+  }
+  .social-btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding: 11px 20px;
+    border-radius: 999px;
+    border:1px solid var(--hair);
+    background: var(--surface);
+    text-decoration:none;
+    font-size:0.88rem; font-weight:500;
+    color: var(--text);
+    transition: border-color .2s ease, transform .15s ease;
+  }
+  .social-btn:hover{ border-color: var(--gold); transform: translateY(-2px); }
+  .social-btn svg{ width:17px; height:17px; }
+
+  /* ---------- locked personal dashboard ---------- */
+  .lock-panel{
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--surface);
+    border:1px solid var(--hair);
+    border-radius: 16px;
+    padding: 34px;
+    text-align:center;
+  }
+  .lock-icon{
+    width:44px; height:44px; margin:0 auto 16px;
+    color: var(--gold);
+  }
+  .lock-panel h3{ font-size:1.3rem; font-weight:600; margin-bottom:8px; }
+  .lock-panel p.hint{ color: var(--muted); font-size:0.85rem; margin-bottom:22px; }
+  .lock-form{
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  }
+  .lock-form input{
+    flex:1; min-width:160px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border:1px solid var(--hair);
+    background: var(--surface-2);
+    color: var(--text);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.9rem;
+  }
+  .lock-form input:focus{ outline:none; border-color: var(--gold); }
+  .lock-error{
+    color: var(--down); font-size:0.82rem; margin-top:12px; display:none;
+  }
+  .lock-warning{
+    max-width:480px; margin: 18px auto 0;
+    font-size:0.78rem; color: var(--muted);
+    border-left: 2px solid var(--down); padding-left:12px; line-height:1.6;
+    text-align:left;
+  }
+
+  .dashboard{
+    display:none;
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--surface);
+    border:1px solid var(--hair);
+    border-radius: 16px;
+    padding: 32px clamp(20px,4vw,40px);
+  }
+  .dashboard-head{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:22px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--hair);
+  }
+  .dashboard-head h3{ font-size:1.2rem; }
+  .dash-lock-btn{
+    background:none; border:1px solid var(--hair); color:var(--muted);
+    padding:8px 14px; border-radius:999px; font-size:0.78rem; cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .dash-lock-btn:hover{ border-color: var(--down); color: var(--down); }
+  .dash-grid{
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    gap:14px;
+  }
+  .dash-item{
+    background: var(--surface-2);
+    border:1px solid var(--hair);
+    border-radius:10px;
+    padding:16px;
+  }
+  .dash-item .k{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem;
+    color: var(--gold); text-transform:uppercase; letter-spacing:0.08em;
+    margin-bottom:6px;
+  }
+  .dash-item .v{ font-size:0.92rem; color: var(--text); line-height:1.5; }
+  .dash-input{
+    width:100%; background: var(--surface); border:1px solid var(--hair);
+    color: var(--text); border-radius:8px; padding:8px 10px;
+    font-family:'IBM Plex Sans', sans-serif; font-size:0.9rem;
+  }
+  .dash-input:focus{ outline:none; border-color: var(--gold); }
+
+  /* ---------- hero avatar ---------- */
+  .hero-avatar{
+    width: 128px; height:128px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    border: 2px solid var(--gold);
+    padding: 4px;
+    overflow:hidden;
+  }
+  .hero-avatar img{ width:100%; height:100%; border-radius:50%; object-fit:cover; }
+
+  /* ---------- people / friends manager ---------- */
+  .people-section{
+    margin-top: 34px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hair);
+  }
+  .people-section h4{
+    font-size:1rem; font-weight:600; margin-bottom:4px;
+  }
+  .people-section .sub{ color: var(--muted); font-size:0.82rem; margin-bottom:18px; }
+  .people-form{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    margin-bottom:20px;
+    background: var(--surface-2);
+    border:1px solid var(--hair);
+    border-radius:12px;
+    padding:16px;
+  }
+  .people-form input[type="text"]{
+    flex:1; min-width:140px;
+    padding:10px 14px; border-radius:999px;
+    border:1px solid var(--hair); background: var(--surface);
+    color: var(--text); font-size:0.88rem;
+  }
+  .people-form input[type="text"]:focus{ outline:none; border-color: var(--gold); }
+  .people-form label.bf{
+    display:flex; align-items:center; gap:6px;
+    font-size:0.82rem; color: var(--muted); white-space:nowrap;
+  }
+  .people-form input[type="file"]{
+    font-size:0.78rem; color: var(--muted); max-width:140px;
+  }
+  .people-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap:16px;
+  }
+  .person-card{
+    background: var(--surface-2);
+    border:1px solid var(--hair);
+    border-radius:12px;
+    padding:14px 10px;
+    text-align:center;
+    position:relative;
+  }
+  .person-card.best{ border-color: rgba(201,162,75,0.6); }
+  .person-avatar{
+    width:64px; height:64px; border-radius:50%;
+    margin: 0 auto 10px;
+    overflow:hidden;
+    border: 2px solid var(--hair);
+  }
+  .person-card.best .person-avatar{ border-color: var(--gold); }
+  .person-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .person-name{ font-size:0.85rem; font-weight:600; word-break:break-word; }
+  .person-star{
+    position:absolute; top:8px; right:10px;
+    color: var(--gold); font-size:0.85rem;
+  }
+  .person-remove{
+    margin-top:8px;
+    background:none; border:none; color: var(--muted);
+    font-size:0.72rem; cursor:pointer; text-decoration:underline;
+  }
+  .person-remove:hover{ color: var(--down); }
+  .people-empty{ color: var(--muted); font-size:0.85rem; font-style:italic; }
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav wrap">
+    <div class="name">John Amos <span class="amos">Firm</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul id="navMenu">
+      <li><a href="#life">My Life</a></li>
+      <li><a href="#forex">Trading</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#personal">Personal</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-avatar">
+      <img id="heroAvatar" src="frst.png" alt="John Amos Mubiru">
+    </div>
+    <div class="eyebrow" style="justify-content:center;">Kampala, Uganda</div>
+    <h1>John Amos <span class="accent">Firm</span></h1>
+    <p class="tagline">Reading the charts by day, chasing good stories, good food and good conversation the rest of the time. Trader by discipline — genuinely easy to talk to.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#contact">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a7.6 7.6 0 0 1-3.7-3.2c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5L9.6 7.4c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4a4 4 0 0 0-1.2 3c0 1.7 1.2 3.4 1.4 3.6.2.3 2.4 3.7 5.9 5.1.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.9 15.9A8.4 8.4 0 0 1 5 15.7l-.3-.5-3.1.8.8-3-.3-.5A8.4 8.4 0 1 1 17.9 17.9z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#forex">See trading experience</a>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What I'm into</div>
+      <h2>Outside the charts</h2>
+      <p>A few things I'm currently spending time on — swap these out any time your interests shift.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="stub-tag">Currently reading</div>
+        <h3>[ i love reading MILK and HONEY by RUPI KAUR ]</h3>
+        <p>It helped me gain new perspectives on life and relationships when i was at my lowest and heartbroken.</p>
+      </div>
+      <div class="card">
+        <div class="stub-tag">Weekend ritual</div>
+        <h3>[ Hobby: reading books and backtesting my strategies ]</h3>
+        <p>I love it because it helps me not to feel overwhelmed by the complexity of markets.</p>
+      </div>
+      <div class="card">
+        <div class="stub-tag">On repeat</div>
+        <h3>[ Am a fan of local music ]</h3>
+        <p>This is because it connects me to my roots and gives me a sense of identity.
+          You may not believe but my dream was to become an artist but i found my passion in forex.
+        </p>
+      </div>
+      <div class="card">
+        <div class="stub-tag">Somewhere I love</div>
+        <h3>[ I love to sit in quite places under nature ]</h3>
+        <p>I love it because it helps me feel connected to the world around me and forget about stress of the world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="life">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About my life</div>
+      <h2>A bit more about me</h2>
+      <p>The story behind the charts — where I'm from, what drives me, and what matters most day to day.</p>
+    </div>
+    <div class="life-grid">
+      <div>
+        <p>[ I first got scared to start forex but when i started thats when i new i had more potential than my own limits were telling me. ]</p>
+        <p>[ My goals are somehow complicated but i believe in equality and money mastery and it would make me very happy to win together in this game. ]</p>
+      </div>
+      <div class="life-facts">
+        <div class="life-fact"><span class="k">Based in</span><span class="v">Kampala, Uganda</span></div>
+        <div class="life-fact"><span class="k">Personality</span><span class="v">[ A little shy but honest ]</span></div>
+        <div class="life-fact"><span class="k">Education</span><span class="v">[ Still in Collage ]</span></div>
+        <div class="life-fact"><span class="k">Believes in</span><span class="v">[ Success is the best comeback ]</span></div>
+      </div>
+    </div>
+    <div class="social-row">
+      <a class="social-btn" href="https://instagram.com/johnrex032?igsh=MXRkNW1iMm40Ymd2ag== " target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.3.06 2.2.27 2.98.57.8.31 1.48.73 2.15 1.4.67.67 1.09 1.35 1.4 2.15.3.78.51 1.68.57 2.98.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.3-.27 2.2-.57 2.98a6 6 0 0 1-1.4 2.15 6 6 0 0 1-2.15 1.4c-.78.3-1.68.51-2.98.57-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.3-.06-2.2-.27-2.98-.57a6 6 0 0 1-2.15-1.4 6 6 0 0 1-1.4-2.15c-.3-.78-.51-1.68-.57-2.98C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.3.27-2.2.57-2.98a6 6 0 0 1 1.4-2.15 6 6 0 0 1 2.15-1.4c.78-.3 1.68-.51 2.98-.57C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52 0-4.76.07-1.02.05-1.58.22-1.95.36-.49.19-.84.42-1.2.79-.38.36-.61.71-.8 1.2-.14.37-.31.93-.36 1.95C2.86 8.48 2.86 8.85 2.86 12s0 3.52.07 4.76c.05 1.02.22 1.58.36 1.95.19.49.42.84.8 1.2.36.38.71.61 1.2.8.37.14.93.31 1.95.36 1.24.06 1.61.07 4.76.07s3.52 0 4.76-.07c1.02-.05 1.58-.22 1.95-.36.49-.19.84-.42 1.2-.8.38-.36.61-.71.8-1.2.14-.37.31-.93.36-1.95.06-1.24.07-1.61.07-4.76s0-3.52-.07-4.76c-.05-1.02-.22-1.58-.36-1.95a3.4 3.4 0 0 0-.8-1.2 3.4 3.4 0 0 0-1.2-.8c-.37-.14-.93-.31-1.95-.36C15.52 4 15.15 4 12 4zm0 3.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zm5.85-2a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0z"/></svg>
+        Instagram
+      </a>
+      <a class="social-btn" href="https://tiktok.com/@johnamos66??" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 2h-3.2v13.7c0 1.4-1.1 2.5-2.5 2.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5c.28 0 .55.04.8.12v-3.3a5.8 5.8 0 0 0-.8-.06A5.8 5.8 0 0 0 5.2 15.7 5.8 5.8 0 0 0 11 21.5a5.8 5.8 0 0 0 5.8-5.8V8.4a8.1 8.1 0 0 0 4.6 1.4V6.6a4.9 4.9 0 0 1-3.4-1.4A4.9 4.9 0 0 1 16.6 2z"/></svg>
+        TikTok
+      </a>
+      <a class="social-btn" href="https://x.com/mjAmos036" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7.6 8.7L23.3 21h-6.9l-5.4-6.6L4.8 21H1.7l8.2-9.3L1 3h7.1l4.9 6.1L18.9 3zm-1.2 16h1.9L7.4 5H5.4l12.3 14z"/></svg>
+        X (Twitter)
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="forex" class="forex">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Track record</div>
+      <h2>Forex trading</h2>
+    </div>
+    <div class="forex-grid">
+      <div class="forex-bio">
+        <p>I trade the forex markets with a focus on [ your main pairs, e.g. major USD pairs, GBP crosses ], using a [ your approach, e.g. price-action / swing-trading / technical ] strategy built around discipline and risk management rather than guesswork.</p>
+        <p>[ I started trading in 2022 and i have been through different mentors and realistically i found it that me to become a perfect trader i dont need so many mentors, what i needed was to be perfect in the knowledge i had which helped me to find the best version of my self i never thought of. ]</p>
+        <span class="edit-flag">Anyone willing to start trading with us must be willing to be a rich trader</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="num">[ 3 ]+</div>
+          <div class="label">Years trading</div>
+        </div>
+        <div class="stat">
+          <div class="num">[ USD BASE ]</div>
+          <div class="label">Markets / pairs focus</div>
+        </div>
+        <div class="stat">
+          <div class="num">[ 75 ]%</div>
+          <div class="label">Win rate</div>
+        </div>
+        <div class="stat">
+          <div class="num">[ Combined Strategy ]</div>
+          <div class="label">Trading approach</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Gallery</div>
+      <h2>Charts, setups &amp; moments</h2>
+      <p>Photos are embedded directly in this file — no separate image folder needed.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <p class="gallery-note">
+      These are images of some of my trades, setups and moments in my life i have captured while grinding and learning.
+    </p>
+  </div>
+</section>
+
+<section id="personal">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin:0 auto 40px;">
+      <div class="eyebrow" style="justify-content:center;">Private</div>
+      <h2>Personal dashboard</h2>
+      <p>A passcode-locked area for personal details — this used for business and personal purposes.</p>
+    </div>
+
+    <div class="lock-panel" id="lockPanel">
+      <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="4" y="10.5" width="16" height="10" rx="2"/>
+        <path d="M7.5 10.5V7a4.5 4.5 0 0 1 9 0v3.5"/>
+      </svg>
+      <h3>Enter passcode</h3>
+      <p class="hint">This unlocks your personal notes below.</p>
+      <div class="lock-form">
+        <input type="password" id="lockInput" placeholder="Passcode" autocomplete="off">
+        <button class="btn btn-primary" id="lockSubmit" type="button">Unlock</button>
+      </div>
+      <p class="lock-error" id="lockError">Incorrect passcode — try again.</p>
+    </div>
+
+    <p class="lock-warning">
+      Heads up: this is a private area for personal data. This data is stored for personal use and clients who want to know more about me. It does not violate anyones privacy and rights.
+    </p>
+
+    <div class="dashboard" id="dashboardPanel">
+      <div class="dashboard-head">
+        <h3>Personal notes</h3>
+        <button class="dash-lock-btn" id="relockBtn" type="button">Lock again</button>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-item"><div class="k">Full name</div><input class="dash-input" data-field="fullName" type="text"></div>
+        <div class="dash-item"><div class="k">Birthday</div><input class="dash-input" data-field="birthday" type="text" placeholder="e.g. 12 March"></div>
+        <div class="dash-item"><div class="k">Family notes</div><input class="dash-input" data-field="familyNotes" type="text"></div>
+        <div class="dash-item"><div class="k">Emergency contact</div><input class="dash-input" data-field="emergencyContact" type="text"></div>
+        <div class="dash-item"><div class="k">Goals this year</div><input class="dash-input" data-field="goals" type="text"></div>
+        <div class="dash-item"><div class="k">Private note</div><input class="dash-input" data-field="privateNote" type="text"></div>
+      </div>
+      <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+        <button class="btn btn-primary" id="saveDashBtn" type="button">Save changes</button>
+        <span class="mono" id="saveStatus" style="font-size:0.8rem; color:var(--muted);"></span>
+      </div>
+
+      <div class="people-section">
+        <h4>Friends &amp; best friends</h4>
+        <p class="sub">Add people with a photo — starred ones show up as best friends. Saved along with your other personal notes.</p>
+        <div class="people-form">
+          <input type="text" id="personName" placeholder="Name">
+          <label class="bf"><input type="checkbox" id="personBest"> Best friend ⭐</label>
+          <input type="file" id="personPhoto" accept="image/*">
+          <button class="btn btn-ghost" id="addPersonBtn" type="button">Add</button>
+        </div>
+        <div class="people-grid" id="peopleGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Get in touch</div>
+    <h2>Want to make Investments — <span style="color:var(--gold)">Reach Us Now</span></h2>
+    <p>Questions about trading, collaborations, or want to have any inquiries — contact us on our handles and I'll get back to you.</p>
+    <a class="btn btn-primary" href="https://wa.me/256769073470?text=Hi%20John%2C%20I%20found%20your%20website%20and%20wanted%20to%20say%20hi!" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a7.6 7.6 0 0 1-3.7-3.2c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5L9.6 7.4c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4a4 4 0 0 0-1.2 3c0 1.7 1.2 3.4 1.4 3.6.2.3 2.4 3.7 5.9 5.1.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.9 15.9A8.4 8.4 0 0 1 5 15.7l-.3-.5-3.1.8.8-3-.3-.5A8.4 8.4 0 1 1 17.9 17.9z"/></svg>
+      +256 769 073 470
+    </a>
+  </div>
+</section>
+
+<a class="whatsapp-float" href="https://wa.me/256769073470" target="_blank" rel="noopener" aria-label="Message John on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a7.6 7.6 0 0 1-3.7-3.2c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5L9.6 7.4c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4a4 4 0 0 0-1.2 3c0 1.7 1.2 3.4 1.4 3.6.2.3 2.4 3.7 5.9 5.1.8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.9 15.9A8.4 8.4 0 0 1 5 15.7l-.3-.5-3.1.8.8-3-.3-.5A8.4 8.4 0 1 1 17.9 17.9z"/></svg>
+</a>
+
+<footer>
+  <div>&copy; 2026 John Amos Mubiru. All rights reserved</div>
+  <div class="mono">Built for the best experience for clients, engineers &amp; analysts</div>
+</footer>
+
+<script>
+  // ============================================================
+  // NAV TOGGLE (mobile menu)
+  // ============================================================
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    const expanded = navMenu.classList.contains('open');
+    navToggle.setAttribute('aria-expanded', expanded);
+  });
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+
+  // ============================================================
+  // PLACEHOLDER IMAGES — generated on the fly, embedded directly
+  // as data URIs (no external files needed at all). Swap any of
+  // these out later by pasting a real photo's data URI, or by
+  // uploading through the "Add" forms below.
+  // ============================================================
+  function placeholderImage(label, hue, ratio){
+    const initials = label.split(' ').map(w => w[0]).filter(Boolean).slice(0,2).join('').toUpperCase();
+    const w = ratio === 'wide' ? 400 : 200;
+    const h = ratio === 'wide' ? 300 : 200;
+    const fontSize = ratio === 'wide' ? 48 : 64;
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${w} ${h}'>
+      <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+        <stop offset='0%' stop-color='hsl(${hue},40%,20%)'/>
+        <stop offset='100%' stop-color='hsl(${hue},50%,10%)'/>
+      </linearGradient></defs>
+      <rect width='${w}' height='${h}' fill='url(#g)'/>
+      <text x='50%' y='52%' font-family='monospace' font-size='${fontSize}' fill='#C9A24B' text-anchor='middle' dominant-baseline='middle'>${initials}</text>
+    </svg>`;
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+  
+
+  // ============================================================
+  // TICKER — decorative currency strip. Edit pairs/values freely.
+  // ============================================================
+  const pairs = [
+    { p: 'EUR/USD', v: '1.0842', dir: 'up' },
+    { p: 'GBP/USD', v: '1.2695', dir: 'down' },
+    { p: 'USD/JPY', v: '156.20', dir: 'up' },
+    { p: 'USD/CHF', v: '0.8931', dir: 'down' },
+    { p: 'AUD/USD', v: '0.6512', dir: 'up' },
+    { p: 'USD/CAD', v: '1.3688', dir: 'down' },
+    { p: 'NZD/USD', v: '0.6003', dir: 'up' },
+    { p: 'USD/UGX', v: '3720.5', dir: 'up' }
+  ];
+  const tickerHTML = pairs.map(x =>
+    `<span class="pair">${x.p} <span class="${x.dir}">${x.v} ${x.dir === 'up' ? '▲' : '▼'}</span></span>`
+  ).join('');
+  document.getElementById('tickerTrack').innerHTML = tickerHTML + tickerHTML; // doubled for seamless loop
+
+  // ============================================================
+  // GALLERY IMAGES — images are embedded directly in this file,
+  // no separate "images" folder needed.
+  //
+  // Right now these are auto-generated placeholders. To use a
+  // real photo: convert it to a data URI (search "image to base64
+  // converter online", or drag it into https://base64.guru/converter/encode/image)
+  // and paste the long string in as the "src" value below, replacing
+  // the placeholderImage(...) call for that entry.
+  // Add a new photo by copying a line; remove one by deleting a line.
+  // ============================================================
+  const galleryImages = [
+    { src: 'aid.jpg', caption: 'My trading setup' },
+    { src: 'green.jpg', caption: 'Where the work happens' },
+    { src: 'blue.jpg', caption: 'Off the clock' },
+  ];
+
+  const grid = document.getElementById('galleryGrid');
+
+  function renderGallery(){
+    grid.innerHTML = '';
+    galleryImages.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.caption || 'Gallery image';
+      div.appendChild(img);
+      if (item.caption){
+        const cap = document.createElement('div');
+        cap.className = 'cap';
+        cap.textContent = item.caption;
+        div.appendChild(cap);
+      }
+      grid.appendChild(div);
+    });
+  }
+  renderGallery();
+
+  // ============================================================
+  // PERSONAL DASHBOARD — real server-backed auth.
+  // The passcode is checked by the server (server.js), never
+  // stored in this file. Session is a secure httpOnly cookie.
+  // ============================================================
+  const lockPanel = document.getElementById('lockPanel');
+  const dashboardPanel = document.getElementById('dashboardPanel');
+  const lockInput = document.getElementById('lockInput');
+  const lockSubmit = document.getElementById('lockSubmit');
+  const lockError = document.getElementById('lockError');
+  const relockBtn = document.getElementById('relockBtn');
+  const saveDashBtn = document.getElementById('saveDashBtn');
+  const saveStatus = document.getElementById('saveStatus');
+  const dashInputs = document.querySelectorAll('.dash-input');
+
+  // ---- friends & best friends ----
+  let people = []; // { id, name, isBest, photo }
+  const peopleGrid = document.getElementById('peopleGrid');
+  const personName = document.getElementById('personName');
+  const personBest = document.getElementById('personBest');
+  const personPhoto = document.getElementById('personPhoto');
+  const addPersonBtn = document.getElementById('addPersonBtn');
+
+  function renderPeople(){
+    peopleGrid.innerHTML = '';
+    if (people.length === 0){
+      peopleGrid.innerHTML = '<div class="people-empty">No one added yet — add a friend above.</div>';
+      return;
+    }
+    // best friends first
+    const sorted = [...people].sort((a,b) => (b.isBest === true) - (a.isBest === true));
+    sorted.forEach(person => {
+      const card = document.createElement('div');
+      card.className = 'person-card' + (person.isBest ? ' best' : '');
+      const photo = person.photo || placeholderImage(person.name, hashHue(person.name));
+      card.innerHTML = `
+        ${person.isBest ? '<span class="person-star">⭐</span>' : ''}
+        <div class="person-avatar"><img src="${photo}" alt="${person.name}"></div>
+        <div class="person-name">${person.name}</div>
+        <button class="person-remove" type="button">Remove</button>
+      `;
+      card.querySelector('.person-remove').addEventListener('click', () => {
+        people = people.filter(p => p.id !== person.id);
+        renderPeople();
+      });
+      peopleGrid.appendChild(card);
+    });
+  }
+
+  function hashHue(str){
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    return Math.abs(hash) % 360;
+  }
+
+  addPersonBtn.addEventListener('click', () => {
+    const name = personName.value.trim();
+    if (!name) return;
+    const finish = (photoDataUrl) => {
+      people.push({ id: Date.now().toString(), name, isBest: personBest.checked, photo: photoDataUrl || '' });
+      personName.value = '';
+      personBest.checked = false;
+      personPhoto.value = '';
+      renderPeople();
+    };
+    const file = personPhoto.files[0];
+    if (file){
+      const reader = new FileReader();
+      reader.onload = (e) => finish(e.target.result);
+      reader.readAsDataURL(file);
+    } else {
+      finish('');
+    }
+  });
+
+  async function loadPersonalData(){
+    const res = await fetch('/api/personal', { credentials: 'include' });
+    if (!res.ok) throw new Error('not authenticated');
+    const data = await res.json();
+    dashInputs.forEach(input => {
+      const field = input.dataset.field;
+      input.value = data[field] || '';
+    });
+    people = Array.isArray(data.people) ? data.people : [];
+    renderPeople();
+  }
+
+  async function tryUnlock(){
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ passcode: lockInput.value })
+      });
+      if (!res.ok) throw new Error('bad passcode');
+      await loadPersonalData();
+      lockPanel.style.display = 'none';
+      dashboardPanel.style.display = 'block';
+      lockError.style.display = 'none';
+      lockInput.value = '';
+    } catch (e) {
+      lockError.style.display = 'block';
+    }
+  }
+
+  lockSubmit.addEventListener('click', tryUnlock);
+  lockInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
+
+  relockBtn.addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    dashboardPanel.style.display = 'none';
+    lockPanel.style.display = 'block';
+  });
+
+  saveDashBtn.addEventListener('click', async () => {
+    const payload = {};
+    dashInputs.forEach(input => { payload[input.dataset.field] = input.value; });
+    payload.people = people;
+    saveStatus.textContent = 'Saving…';
+    try {
+      const res = await fetch('/api/personal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('save failed');
+      saveStatus.textContent = 'Saved ✓';
+      setTimeout(() => saveStatus.textContent = '', 2000);
+    } catch (e) {
+      saveStatus.textContent = 'Could not save — please log in again.';
+    }
+  });
+
+  // If a valid session cookie already exists (e.g. page refresh),
+  // try loading data straight away so the dashboard stays unlocked.
+  loadPersonalData()
+    .then(() => {
+      lockPanel.style.display = 'none';
+      dashboardPanel.style.display = 'block';
+    })
+    .catch(() => { /* not logged in — stay on lock screen */ });
+</script>
+
+</body>
+</html>
