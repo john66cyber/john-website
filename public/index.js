@@ -225,7 +225,7 @@
     }
   });
 
-  // If a valid session cookie already exists (e.g. page refresh),
+  /*If a valid session cookie already exists (e.g. page refresh),*/
   // try loading data straight away so the dashboard stays unlocked.
   loadPersonalData()
     .then(() => {
